@@ -1,0 +1,191 @@
+using AssignmentLib_3;
+using System;
+
+namespace Assignment_3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            InterfaceSample2();
+            InterfaceSample3();
+        }
+        private static void InterfaceSample2()
+        {
+            PartTimeStudent student = new PartTimeStudent();
+            student.LibCardNumber = "123456789";
+            student.Year = 2021;
+            student.NoPartTimeStudent();
+            student.PartTimeStudents();
+            Console.WriteLine(student.PartTimeStudents());
+        }
+        private static void InterfaceSample3()
+        {
+            SavingsAccount account = new SavingsAccount();
+
+            account.AccountHolderName = "sindhu";
+            account.AccountNumber = 1234567;
+            account.BalanceAmount = 234;
+            account.Interest = 23;
+            account.MinimumBlance = 0;
+            Console.WriteLine(account.Deposit(234));
+            Console.WriteLine(account.Withdraw(234));
+            Console.WriteLine(account.Addinterest());
+
+            ODAccount odaccount = new ODAccount();
+
+            odaccount.AccountNumber = 34567;
+            odaccount.AccountHolderName = "sindhu";
+            odaccount.AccountNumber = 1234567;
+            odaccount.BalanceAmount = 234;
+            odaccount.ODInterest = 23;
+            odaccount.ODLimit = 120;
+            Console.WriteLine(odaccount.Deposit(-234));
+            Console.WriteLine(odaccount.Withdraw(-234));
+            Console.WriteLine(odaccount.AddODinterest());
+
+        }
+
+
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace AssignmentLib_3
+{
+    interface BankDetails
+    {
+        public int AccountNumber { get; set; }
+        public string AccountHolderName { get; set; }
+
+        public int Amount { get; set; }
+        public double BalanceAmount { get; set; }
+
+        bool Deposit(int Amount);
+        bool Withdraw(int Amount);
+
+    }
+    public class SavingsAccount : BankDetails
+    {
+        public int AccountNumber { get; set; }
+        public string AccountHolderName { get; set; }
+        public int Amount { get; set; }
+        public double BalanceAmount { get; set; }
+        public double Interest;
+        public double MinimumBlance;
+
+        public bool Deposit(int Amount)
+        {
+            if (Amount > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool Withdraw(int Amount)
+        {
+            if (Amount > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        public double Addinterest()
+        {
+
+            return Interest;
+        }
+    }
+    public class ODAccount : BankDetails
+    {
+        public int AccountNumber { get; set; }
+        public string AccountHolderName { get; set; }
+        public int Amount { get; set; }
+        public double BalanceAmount { get; set; }
+        public double ODInterest;
+        public double ODLimit;
+
+        public bool Deposit(int Amount)
+        {
+            if (Amount > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool Withdraw(int Amount)
+        {
+            if (Amount > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public double AddODinterest()
+        {
+
+            return ODInterest;
+
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace AssignmentLib_3
+{
+    interface IStudent
+    {
+        public string LibCardNumber { set; get; }
+        public int Year { get; set; }
+
+
+        public string NoPartTimeStudent();
+        public string PartTimeStudents();
+
+
+    }
+    public class PartTimeStudent : IStudent
+    {
+        public string LibCardNumber { get; set; }
+        public int Year { get; set; }
+
+
+
+        public string NoPartTimeStudent()
+        {
+            return "I dont want Parttime student";
+        }
+
+        public string PartTimeStudents()
+        {
+            return "I  want Parttime student";
+        }
+    }
+}
